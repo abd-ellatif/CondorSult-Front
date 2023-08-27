@@ -65,7 +65,7 @@ function SignupCard() {
               Date de naissance
             </label>
             <input
-              type="text"
+              type="date"
               id="date"
               name="date"
               className="w-full border rounded py-2 px-3 focus:outline-none focus:ring focus:border-blue-200"

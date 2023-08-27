@@ -1,28 +1,37 @@
-import React, { Component } from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
-function ProductsCarousel() {
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
+function ProductCard(props) {
+  return (
+    <Link to="/" className="">
+      <img src="src\assets\placeholder.png" alt="Product" />
+      <h6 className="my-2">{props.article.nom}</h6>
+    </Link>
+  );
+}
+
+function ProductsCarousel(props) {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
   };
-
-  return <Carousel responsive={responsive}></Carousel>;
+  return (
+    <div className="z-0">
+      <h1 className="font-medium text-xl my-2">Category</h1>
+      <Slider {...settings}>
+        {props.articles.map((article) => (
+          <ProductCard key={article.id} article={article} />
+        ))}
+      </Slider>
+    </div>
+  );
 }
 
 export default ProductsCarousel;

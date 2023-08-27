@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 
-function Navbar() {
+function Navbar(props) {
   const link = "text-blue-900 hover:underline underline-offset-4 font-medium";
   const [hamburgerMenu, setHamburgerMenu] = useState(true);
   const toggleHamburgerMenu = () => {
@@ -20,40 +20,40 @@ function Navbar() {
           <Link to="/" className={link}>
             Home
           </Link>
-          <Link to="/" className={link}>
+          <Link to="/Blog" className={link}>
             Blog
           </Link>
-          <Link to="/" className={link}>
+          <Link to="/PointsVente" className={link}>
             Points vente
           </Link>
-          <Link to="/" className={link}>
+          <Link to="/Contact" className={link}>
             Contact
           </Link>
         </ul>
         <div className="md:hidden">
           <button onClick={toggleHamburgerMenu}>Menu</button>
         </div>
-        <Button variante={0} onClick={() => {}}>
+        <Button variante={0} onClick={props.openPopup}>
           Se connecter
         </Button>
       </div>
       <ul
         className={`${
           hamburgerMenu
-            ? "bg-white absolute top-10 left-20 right-20 flex flex-col items-center gap-4 m-4 md:hidden p-4"
+            ? "bg-white absolute top-16 left-20 right-20 flex flex-col items-center gap-4 m-4 md:hidden p-4 z-10"
             : "hidden"
         }`}
       >
-        <Link to="/" className={link}>
+        <Link to="" className={link}>
           Home
         </Link>
-        <Link to="/" className={link}>
+        <Link to="/Blog" className={link}>
           Blog
         </Link>
-        <Link to="/" className={link}>
+        <Link to="/PointsVente" className={link}>
           Points vente
         </Link>
-        <Link to="/" className={link}>
+        <Link to="/Contact" className={link}>
           Contact
         </Link>
       </ul>
