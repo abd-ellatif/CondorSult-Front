@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default function Contact() {
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-10 z-0">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="p-4 bg-white rounded-lg">
           <form className="flex flex-col">

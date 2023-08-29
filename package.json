@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@googlemaps/react-wrapper": "^1.1.35",
+    "axios": "^1.5.0",
     "leaflet": "^1.9.4",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
@@ -19,6 +20,8 @@
     "react-multi-carousel": "^2.8.4",
     "react-router-dom": "^6.15.0",
     "react-slick": "^0.29.0",
+    "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
     "slick-carousel": "^1.8.1",
     "sort-by": "^0.0.2"
   },

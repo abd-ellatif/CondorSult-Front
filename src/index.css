@@ -7,4 +7,10 @@ body{
     margin-left: 5%;
     margin-right: 5%;
 }
-#map { height: 180px; }
+#map { height: 180px; z-index:0 ; }
+
+.slick-arrow {    
+    z-index: 50;
+    background-color: black;
+    border-radius: 50%;
+}

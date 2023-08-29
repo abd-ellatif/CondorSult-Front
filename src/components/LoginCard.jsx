@@ -1,12 +1,29 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { Login } from "../api/Authentication";
+import { userState } from "../states/Atoms";
 
-function LoginCard({ isOpen, OnClose }) {
+function LoginCard({ isOpen, OnClose, openSign }) {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [UserState, setUserState] = useRecoilState(userState);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const user = await Login(userName, password);
+    user && setUserState(user);
+    user && OnClose();
+  };
+
+  const handleClick = async (e) => {
+    OnClose();
+    openSign();
+  };
   return (
     <div
       className={`popup ${
         isOpen
-          ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  p-4 z-50"
+          ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  p-4 z-50 bg-blue-900 rounded-xl"
           : "hidden"
       }`}
     >
@@ -17,14 +34,16 @@ function LoginCard({ isOpen, OnClose }) {
           <div>
             <div className="m-4">
               <label htmlFor="email" className="block text-gray-600">
-                E-mail
+                Username
               </label>
               <input
                 type="text"
-                id="email"
+                id="Username"
                 name="email"
                 className="w-full border rounded py-2 px-3 focus:outline-none focus:ring focus:border-blue-200"
                 placeholder="Entrer votre e-mail"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
                 required
               />
             </div>
@@ -35,10 +54,12 @@ function LoginCard({ isOpen, OnClose }) {
               </label>
               <input
                 type="password"
-                id="password"
+                id="Password"
                 name="password"
                 className="w-full border rounded py-2 px-3 focus:outline-none focus:ring focus:border-blue-200"
                 placeholder="Mot de passe"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
@@ -47,7 +68,7 @@ function LoginCard({ isOpen, OnClose }) {
             <button
               type="submit"
               className="bg-blue-900 text-white py-2 px-8 rounded-md hover:bg-blue-600"
-              onClick={OnClose}
+              onClick={handleSubmit}
             >
               Se connecter
             </button>
@@ -55,9 +76,9 @@ function LoginCard({ isOpen, OnClose }) {
         </form>
         <div>
           Vous n'avez pas d compte?{" "}
-          <Link to="/" className="text-blue-900">
+          <button className="text-blue-900" onClick={handleClick}>
             inscrire
-          </Link>
+          </button>
         </div>
       </div>
     </div>
