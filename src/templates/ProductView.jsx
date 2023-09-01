@@ -48,6 +48,7 @@ function CommentairePost(articleId) {
       userStateValue.token
     );
     response && alert("Commentaire ajouté");
+    setCommentState("");
   };
   if (userStateValue) {
     return (
